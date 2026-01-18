@@ -1,4 +1,4 @@
-package echo;
+package com.farmaish.echo;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,11 +7,11 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class server extends Thread{
+public class Server extends Thread{
 
 
     Socket s;
-    public server(Socket s){
+    public Server(Socket s){
         this.s=s;
     }
 
@@ -42,12 +42,13 @@ public class server extends Thread{
 
        ServerSocket ss= new ServerSocket(8080);
        System.out.println("server is running");
-       Socket s=ss.accept();
-       int count=0;
-       System.out.println("client " + (count + 1) + " connected");
 
        while(true){
-           server ser= new server(s);
+           Socket s=ss.accept();
+           int count=0;
+           System.out.println("client " + (count + 1) + " connected");
+
+           Server ser= new Server(s);
            ser.start();
        }
 
